@@ -2,12 +2,12 @@ listaCompra = []
 entradaMenu = 0
 adicionarItem = ""
 
-removerItem = 0
+numero = 0
 
 def Menu():
     global entradaMenu
 
-    print("-"*4)
+    print("\n-"*4)
     print("MENU")
     print("_"*4)
 
@@ -16,45 +16,54 @@ def Menu():
     print("3-Mostrar lista")
     print("4-Sair")
 
-    entradaMenu = int(input("Informe um número correspondente ao que deseja fazer:"))
+    entradaMenu = int(input("\nInforme um número correspondente ao que deseja fazer:"))
 
 def adicionar_item():
-    global adicionarItem, sequenciaItem
-    sequenciaItem = 0
-
-    while True:
-        sequenciaItem += 1
-        adicionarItem = str(input(f"(Digite s quando quiser sair).{sequenciaItem}° item:")).capitalize()
-
-            #Encerra a adição de itens  
-        if adicionarItem == "S":
-            break
-
-        else:
-            listaCompra.append(adicionarItem)
-
-def remover_item():
-    global removerItem
-
-    mostrar_lista()
-    while True:
-        
-        removerItem = int(input(f"(Digite s quando quiser sair).Digite o número correspondente ao item que deseja remover:"))
-
-        #Ao digitar "s" o programa se encerra
-        if adicionarItem == "S":
-            break
-        #falta fazer o básico(remover)
-        else:
-            listaCompra.remove()
-
-def mostrar_lista():
     global sequenciaItem
     sequenciaItem = 0
 
-    for item in listaCompra:
+    print("\n-"*16)
+    print("ADIÇÃO DOS ITENS")
+    print("-*16")
+
+    while True:
         sequenciaItem += 1
-        print(f"{sequenciaItem}-{item}")
+        adicionarItem = str(input(f"(\nDigite -1 quando quiser sair).{sequenciaItem}° item:")).capitalize()
+
+            #Encerra a adição de itens  
+        if adicionarItem == "-1":
+            break
+
+        else:
+            listaCompra.append(f"{sequenciaItem}-{adicionarItem}")
+
+def remover_item():
+
+    mostrar_lista()
+
+    print("-"*17)
+    print("REMOÇÃO DOS ITENS")
+    print("-"*17)
+    while True:
+        
+        removerItem = int(input(f"(\nDigite -1 quando quiser sair).Digite o número correspondente ao item que deseja remover:"))
+        numero = listaCompra[removerItem]
+
+        #Ao digitar "-1" o programa se encerra
+        if removerItem == -1:
+            break
+        #falta fazer o básico(remover)
+        else:
+            listaCompra.remove(numero)
+
+def mostrar_lista():
+
+    print("-"*16)
+    print("LISTA DE COMPRAS")
+    print("-"*16)
+
+    for item in listaCompra:
+       print(item)
      
 while True:
     Menu()
