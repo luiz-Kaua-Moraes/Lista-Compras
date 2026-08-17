@@ -1,3 +1,3 @@
 # Lista-Compras
-Projeto de lista no terminal
+Projeto de lista de compra no terminal
 
