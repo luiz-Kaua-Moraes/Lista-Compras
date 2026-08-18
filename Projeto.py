@@ -41,7 +41,11 @@ def adicionar_item():
     while True:
         sequenciaItem += 1 #Usada para a sequência dos números na lista
 
-        adicionarItem = str(input(f"(\nDigite -1 quando quiser sair).{sequenciaItem}° item:")).capitalize()
+        adicionarItem = str(input(f"\n(Digite -1 quando quiser sair).{sequenciaItem}° item:")).capitalize()
+
+        if not adicionarItem:
+            print("Você não informou nenhuma palavra. Informe uma palavra")
+            continue
         
         #Encerra a adição de itens  
         if adicionarItem == "-1":
@@ -51,6 +55,7 @@ def adicionar_item():
         else:
             listaCompra.append(f"{sequenciaItem}-{adicionarItem}")
 
+#problema: quando o item é removido os números não se atualizam para que a lista continue na sequência
 def remover_item():
 
     mostrar_lista()
@@ -60,26 +65,31 @@ def remover_item():
     print("REMOÇÃO DOS ITENS")
     print("-"*17)
     while True:
-        
 
         try:
-            removerItem = int(input(f"(\nDigite -1 quando quiser sair).Digite o número correspondente ao item que deseja remover:"))
+            removerItem = int(input(f"\n(Digite -1 quando quiser sair).Digite o número correspondente ao item que deseja remover:"))
 
-            numero = listaCompra[removerItem-1] #O índice que o usuário deseja remover é atribuido à variável na contagem humana
-        
+            if removerItem == -1:
+                break
+
+            if removerItem == 0:
+                print("\nVocê informou um número que não existe na lista. Tente novamente e informe um número que esteja na lista")
+                continue
+
+            numero = listaCompra[removerItem -1] #O índice que o usuário deseja remover é atribuido à variável na contagem humana
+
+            
         except IndexError:
-            print("\nVocê informou um número que não existe na lista. Informe um número que esteja na lista")
+            print("\nVocê informou um número que não existe na lista. Tente novamente e informe um número que esteja na lista")
+
+        except ValueError:
+            print("Por favor informe um número")
 
         # Só remove o item se o índice informado existir na lista
         else:
-            listaCompra.remove(numero)
-
-        #Ao digitar "-1" a funcionalidade de adição se encerra
-        if removerItem == -1:
-            break
-      
-        
-
+            listaCompra.remove(numero) 
+            print(f"\n{numero} Removido com sucesso!")
+       
 def mostrar_lista():
 
     print("")
@@ -101,4 +111,3 @@ while True:
             mostrar_lista()
         case 4:
             break
-
